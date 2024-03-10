@@ -24,8 +24,9 @@ public class MemberRepository {
     // 주어진 id에 해당하는 멤버를 찾아 Optional로 반환합니다.
     public Optional<Member> findById(Long id) {
         // TODO [1단계] id를 이용하여 members 맵에서 멤버를 찾으세요.
+        Member findMember = members.get(id);
         // TODO [1단계] 찾은 멤버를 Optional로 감싸서 반환하세요.
-        return null;
+        return Optional.of(findMember);
     }
 
     // 주어진 username과 일치하는 멤버를 찾아 Optional로 반환합니다.
