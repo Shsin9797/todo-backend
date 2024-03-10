@@ -34,10 +34,11 @@ public class MemberRepository {
     // 주어진 username과 일치하는 멤버를 찾아 Optional로 반환합니다.
     public Optional<Member> findByUsername(String username) {
         // TODO [1단계] members 맵에서 username이 일치하는 멤버를 스트림을 사용해 찾으세요.
-        Stream<Member> stream = (Stream<Member>) members.stream();
-        members
+        Member sameNameMember = (Member) members.entrySet().stream()
+                .filter(e-> e.getValue().getUsername().equals(username)).findFirst().get();
+
         // TODO [1단계] 찾은 멤버를 Optional로 감싸서 반환하세요.
-        return null;
+        return Optional.of(sameNameMember);
     }
 
     // 저장소의 모든 멤버를 제거합니다.
