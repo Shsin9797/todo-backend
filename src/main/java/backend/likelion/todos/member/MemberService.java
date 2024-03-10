@@ -15,9 +15,14 @@ public class MemberService {
     // 회원 가입을 처리하고, 저장된 회원의 ID를 반환합니다.
     public Long signup(String username, String password, String nickname, String profileImageUrl) {
         // TODO [1단계] username으로 기존 회원이 있는지 확인하고, 있으면 "해당 아이디로 이미 가입한 회원이 있습니다" 메시지와 함께 ConflictException을 발생시키세요.
+        if (memberRepository.findByUsername(username).isPresent()) {
+            throw new ConflictException("해당 아이디로 이미 가입한 회원이 있습니다");
+        }
+
         // TODO [1단계] Member 인스턴스를 생성하세요.
+        Member newMember = new Member(username,password,nickname,profileImageUrl);
         // TODO [1단계] 생성된 Member 인스턴스를 memberRepository에 저장하고, 저장된 멤버의 ID를 반환하세요.
-        return null;
+        return memberRepository.save(newMember).getId();
     }
 
     // 로그인을 처리하고, 로그인한 회원의 ID를 반환합니다.
