@@ -18,7 +18,7 @@ public class MemberRepository {
         // TODO [1단계] members 맵에 member를 추가하세요.
         members.put(member.getId(),member);
         // TODO [1단계] member를 반환하세요.
-        return null;
+        return member;
     }
 
     // 주어진 id에 해당하는 멤버를 찾아 Optional로 반환합니다.
