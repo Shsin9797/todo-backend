@@ -6,6 +6,8 @@ import backend.likelion.todos.common.UnAuthorizedException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 public class MemberService {
@@ -28,9 +30,14 @@ public class MemberService {
     // 로그인을 처리하고, 로그인한 회원의 ID를 반환합니다.
     public Long login(String username, String password) {
         // TODO [1단계] username으로 회원을 찾아오고, 없으면 "존재하지 않는 아이디입니다" 메시지와 함께 UnAuthorizedException을 발생시키세요.
+        Optional<Member> member=  memberRepository.findByUsername(username);
+        if (member.isEmpty()) {
+            throw new UnAuthorizedException("존재하지 않는 아이디입니다");
+        }
         // TODO [1단계] 찾아온 Member 인스턴스에 대해 password를 검증하세요.
+        member.get().login(password);
         // TODO [1단계] 검증이 성공적이면, 해당 회원의 ID를 반환하세요.
-        return null;
+        return member.get().getId();
     }
 
     // 회원 ID로 회원 정보를 조회하고, 그 결과를 MemberResponse로 반환합니다.
