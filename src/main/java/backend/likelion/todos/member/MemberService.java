@@ -43,7 +43,12 @@ public class MemberService {
     // 회원 ID로 회원 정보를 조회하고, 그 결과를 MemberResponse로 반환합니다.
     public MemberResponse findById(Long memberId) {
         // TODO [1단계] memberId로 회원 정보를 찾아오고, 없으면 "회원 정보가 없습니다" 메시지와 함께 NotFoundException을 발생시키세요.
+        Optional<Member> memberInfo = memberRepository.findById(memberId);
+        if (memberInfo.isEmpty()) {
+            throw new NotFoundException("회원 정보가 없습니다");
+        }
         // TODO [1단계] 찾아온 Member 인스턴스로부터 MemberResponse 객체를 생성하여 반환하세요.
-        return null;
+        Member member= memberInfo.get();
+        return new MemberResponse(member.getId(),member.getUsername(),member.getNickname(),member.getProfileImageUrl());
     }
 }
