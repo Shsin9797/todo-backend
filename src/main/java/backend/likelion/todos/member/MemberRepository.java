@@ -43,5 +43,6 @@ public class MemberRepository {
     // 저장소의 모든 멤버를 제거합니다.
     public void clear() {
         // TODO [1단계] members 맵의 모든 내용을 제거하세요.
+        members.clear();
     }
 }
