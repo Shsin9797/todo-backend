@@ -15,7 +15,8 @@ public class GoalRepository {
     // 목표(Goal)를 저장하고 저장된 목표를 반환합니다.
     public Goal save(Goal goal) {
         // TODO [2단계] goal의 id를 설정하고, goals 맵에 추가하세요. 그리고 goal을 반환하세요.
-        return null;
+        goals.put(id++,goal);
+        return goal;
     }
 
     // 주어진 id로 목표를 찾아 Optional로 반환합니다.
