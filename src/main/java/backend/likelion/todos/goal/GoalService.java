@@ -4,6 +4,8 @@ import backend.likelion.todos.common.NotFoundException;
 import backend.likelion.todos.member.Member;
 import backend.likelion.todos.member.MemberRepository;
 import java.util.List;
+import java.util.Optional;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,9 +19,14 @@ public class GoalService {
     // 목표를 저장하고 저장된 목표의 ID를 반환합니다.
     public Long save(String name, String color, Long memberId) {
         // TODO [2단계] memberId를 사용하여 회원 정보를 조회하고, 없으면 "회원 정보가 없습니다." 메시지와 함께 NotFoundException을 발생시키세요.
+        Optional<Member> memberOptional = memberRepository.findById(memberId);
+        if (memberOptional.isEmpty()) {
+            throw new NotFoundException("회원 정보가 없습니다.");
+        }
         // TODO [2단계] Goal 인스턴스를 생성하세요.
+        Goal goal = new Goal(name,color,memberOptional.get());
         // TODO [2단계] 생성된 Goal 인스턴스를 goalRepository에 저장하고, 저장된 목표의 ID를 반환하세요.
-        return null;
+        return goalRepository.save(goal).getId();
     }
 
     // 주어진 정보로 목표를 업데이트합니다.
