@@ -33,6 +33,8 @@ public class Goal {
     // 이 객체의 이름과 색상을 업데이트합니다.
     public void update(String name, String color) {
         // TODO [2단계] 이 객체의 name을 새로운 name으로 설정하세요.
+        this.name = name;
         // TODO [2단계] 이 객체의 color를 새로운 color로 설정하세요.
+        this.color = color;
     }
 }
