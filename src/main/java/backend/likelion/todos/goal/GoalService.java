@@ -3,6 +3,8 @@ package backend.likelion.todos.goal;
 import backend.likelion.todos.common.NotFoundException;
 import backend.likelion.todos.member.Member;
 import backend.likelion.todos.member.MemberRepository;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -72,7 +74,16 @@ public class GoalService {
     // 특정 회원 ID에 속하는 모든 목표를 조회하여 GoalResponse 리스트로 반환합니다.
     public List<GoalResponse> findAllByMemberId(Long memberId) {
         // TODO [2단계] memberId를 사용하여 모든 목표를 조회하세요.
+        List<Goal> goalList = goalRepository.findAllByMemberId(memberId);
         // TODO [2단계] 조회된 목표 리스트를 GoalResponse 리스트로 변환하여 반환하세요.
-        return null;
+        List<GoalResponse> goalResponseList = new ArrayList<>();
+
+        for (Goal goal : goalList) {
+            Long id = goal.getId();
+            String name = goal.getName();
+            String color = goal.getColor();
+            goalResponseList.add(new GoalResponse(id,name,color));
+        }
+        return goalResponseList;
     }
 }
