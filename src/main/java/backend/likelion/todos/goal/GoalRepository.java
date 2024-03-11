@@ -4,6 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -41,6 +43,7 @@ public class GoalRepository {
     // 특정 회원 ID에 속하는 모든 목표를 찾아 리스트로 반환합니다.
     public List<Goal> findAllByMemberId(Long memberId) {
         // TODO [2단계] goals 맵에서 memberId와 일치하는 모든 목표를 스트림을 사용해 찾아, 리스트로 반환하세요.
-        return null;
+        List<Goal> goalList = (List<Goal>) goals.entrySet().stream().filter(e -> memberId.equals(e.getKey())).findAny().get(); // .collect(Collectors.toList());
+        return goalList;
     }
 }
