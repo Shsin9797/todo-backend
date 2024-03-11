@@ -29,6 +29,7 @@ public class GoalRepository {
     // 모든 목표를 삭제합니다.
     public void clear() {
         // TODO [2단계] goals 맵의 모든 내용을 제거하세요.
+        this.goals.clear();
     }
 
     // 주어진 목표를 삭제합니다.
