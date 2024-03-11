@@ -35,6 +35,7 @@ public class GoalRepository {
     // 주어진 목표를 삭제합니다.
     public void delete(Goal goal) {
         // TODO [2단계] goals 맵에서 주어진 goal의 id를 사용하여 해당 목표를 삭제하세요.
+        goals.remove(goal.getId());
     }
 
     // 특정 회원 ID에 속하는 모든 목표를 찾아 리스트로 반환합니다.
