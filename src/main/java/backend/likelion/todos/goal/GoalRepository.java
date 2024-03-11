@@ -22,7 +22,8 @@ public class GoalRepository {
     // 주어진 id로 목표를 찾아 Optional로 반환합니다.
     public Optional<Goal> findById(Long id) {
         // TODO [2단계] id를 사용하여 goals 맵에서 목표를 찾고, 찾은 목표를 Optional로 감싸서 반환하세요.
-        return null;
+        Goal goal = goals.get(id);
+        return Optional.of(goal);
     }
 
     // 모든 목표를 삭제합니다.
