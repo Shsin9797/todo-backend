@@ -25,6 +25,9 @@ public class Goal {
     // 주어진 멤버가 현재 멤버와 동일한지 검증하고, 아니라면 ForbiddenException을 발생시킵니다.
     public void validateMember(Member member) {
         // TODO [2단계] 이 객체의 member와 입력받은 member가 같지 않다면 "해당 목표에 대한 권한이 없습니다." 메시지와 함께 ForbiddenException을 발생시키세요.
+        if (!member.equals(this.member)) {
+            throw new ForbiddenException("해당 목표에 대한 권한이 없습니다.");
+        }
     }
 
     // 이 객체의 이름과 색상을 업데이트합니다.
