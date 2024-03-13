@@ -51,5 +51,6 @@ public class Todo {
     // 투두를 미완료 상태로 표시합니다.
     public void uncheck() {
         // TODO [3단계] 이 객체의 isCompleted를 false로 설정하세요.
+        this.isCompleted = false;
     }
 }
