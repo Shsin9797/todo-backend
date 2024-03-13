@@ -80,8 +80,18 @@ public class TodoService {
     // 주어진 Todo를 미완료 상태로 표시합니다.
     public void uncheck(Long todoId, Long memberId) {
         // TODO [3단계] memberId로 회원 정보를 조회하고, 없으면 "회원 정보가 없습니다." 메시지와 함께 NotFoundException을 발생시키세요.
+        Optional<Member> member = memberRepository.findById(memberId);
+        if (member.isEmpty()) {
+            throw new NotFoundException("회원 정보가 없습니다.");
+        }
         // TODO [3단계] todoId로 투두 정보를 조회하고, 없으면 "투두 정보가 없습니다." 메시지와 함께 NotFoundException을 발생시키세요.
+        Optional<Todo> todo = todoRepository.findById(todoId);
+        if (todo.isEmpty()) {
+            throw new NotFoundException("투두 정보가 없습니다.");
+        }
         // TODO [3단계] 조회한 투두의 멤버가 입력된 멤버와 동일한지 확인하고, 투두를 미완료 상태로 표시하세요.
+        todo.get().validateMember(member.get());
+        todo.get().uncheck();
     }
 
     // 주어진 Todo를 삭제합니다.
