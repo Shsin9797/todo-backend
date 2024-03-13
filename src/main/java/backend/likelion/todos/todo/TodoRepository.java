@@ -19,7 +19,9 @@ public class TodoRepository {
     // Todo를 저장하고 저장된 Todo를 반환합니다.
     public Todo save(Todo todo) {
         // TODO [3단계] todo의 id를 설정하고, todos 맵에 추가하세요. 그리고 todo를 반환하세요.
-        return null;
+        todo.setId(id++);
+        todos.put(todo.getId(),todo);
+        return todo;
     }
 
     // 주어진 id로 Todo를 찾아 Optional로 반환합니다.
