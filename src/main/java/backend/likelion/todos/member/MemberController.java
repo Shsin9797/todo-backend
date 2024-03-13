@@ -21,5 +21,6 @@ public class MemberController {
     // 회원 가입 요청을 처리합니다.
     public void signup(@RequestBody SignupRequest request) {
         // TODO [4단계] SignupRequest에서 username, password, nickname, profileImageUrl을 추출하여 memberService의 signup 메소드를 호출하세요.
+        memberService.signup(request.getUsername(),request.getPassword(),request.getNickname(),request.getProfileImageUrl());
     }
 }
