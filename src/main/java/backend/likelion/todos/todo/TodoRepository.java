@@ -40,6 +40,7 @@ public class TodoRepository {
     // 주어진 Todo를 삭제합니다.
     public void delete(Todo todo) {
         // TODO [3단계] todos 맵에서 주어진 todo의 id를 사용하여 해당 Todo를 삭제하세요.
+        todos.remove(todo.getId());
     }
 
     // 특정 회원 ID와 날짜에 해당하는 모든 Todo를 찾아 리스트로 반환합니다.
