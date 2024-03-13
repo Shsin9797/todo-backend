@@ -34,6 +34,7 @@ public class TodoRepository {
     // 모든 Todo를 삭제합니다.
     public void clear() {
         // TODO [3단계] todos 맵의 모든 내용을 제거하세요.
+        todos.clear();
     }
 
     // 주어진 Todo를 삭제합니다.
