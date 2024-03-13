@@ -114,6 +114,7 @@ public class TodoService {
     // 특정 회원 ID와 날짜에 해당하는 모든 Todo를 찾아 TodoWithDayResponse 리스트로 반환합니다.
     public List<TodoWithDayResponse> findAllByMemberIdAndDate(Long memberId, YearMonth date) {
         // TODO [3단계] memberId와 date를 사용하여 해당하는 모든 Todo를 조회하세요.
+
         // TODO [3단계] 조회된 Todo를 날짜별로 그룹화하고, 각 그룹을 TodoWithDayResponse 객체로 변환하여 리스트로 반환하세요.
         return null;
     }
