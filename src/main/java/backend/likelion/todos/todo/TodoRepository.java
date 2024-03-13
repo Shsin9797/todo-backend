@@ -1,12 +1,7 @@
 package backend.likelion.todos.todo;
 
 import java.time.YearMonth;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Repository;
 
@@ -46,7 +41,20 @@ public class TodoRepository {
     // 특정 회원 ID와 날짜에 해당하는 모든 Todo를 찾아 리스트로 반환합니다.
     public List<Todo> findAllByMemberIdAndDate(Long memberId, YearMonth yearMonth) {
         // TODO [3단계] todos 맵에서 memberId와 일치하고, yearMonth에 속하는 모든 Todo를 찾아 리스트로 반환하세요.
+        List<Todo> todoList = new ArrayList<>();
+        for (int todoId = 1; todoId<=id ; todoId++) {
+            Todo todo = todos.get(todoId);
+            if ((todo.getGoal().getMember().getId().equals(memberId))
+                && (todo.getDate().getYear()==yearMonth.getYear())
+                    && (todo.getDate().getMonth()==yearMonth.getMonth())) {
+                todoList.add(todo);
+            }
+
+        }
         // TODO [3단계] 찾은 Todo 리스트를 날짜 순으로 정렬하세요.
-        return null;
+        todoList.stream()
+                .sorted(Comparator.comparing(Todo::getDate))
+                .collect(Collectors.toList());
+        return todoList;
     }
 }
