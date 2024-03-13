@@ -27,7 +27,8 @@ public class TodoRepository {
     // 주어진 id로 Todo를 찾아 Optional로 반환합니다.
     public Optional<Todo> findById(Long id) {
         // TODO [3단계] id를 사용하여 todos 맵에서 Todo를 찾고, 찾은 Todo를 Optional로 감싸서 반환하세요.
-        return null;
+        Optional<Todo> todo= Optional.of(todos.get(id));
+        return todo;
     }
 
     // 모든 Todo를 삭제합니다.
