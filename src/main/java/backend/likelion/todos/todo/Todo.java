@@ -45,6 +45,7 @@ public class Todo {
     // 투두를 완료 상태로 표시합니다.
     public void check() {
         // TODO [3단계] 이 객체의 isCompleted를 true로 설정하세요.
+        this.isCompleted = true;
     }
 
     // 투두를 미완료 상태로 표시합니다.
