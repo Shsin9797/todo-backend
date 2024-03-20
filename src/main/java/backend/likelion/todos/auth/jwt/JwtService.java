@@ -49,6 +49,7 @@ public class JwtService {
             Long memberId = memberIdClaim.asLong();
             return memberId;
 
+
         } catch (JWTVerificationException e) {
             throw new UnAuthorizedException("유효하지 않은 토큰입니다.");
         }
