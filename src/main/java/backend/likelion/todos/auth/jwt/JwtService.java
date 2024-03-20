@@ -9,6 +9,9 @@ import com.auth0.jwt.JWTCreator;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import java.util.Date;
+
+import com.auth0.jwt.interfaces.Claim;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -37,7 +40,19 @@ public class JwtService {
 
     // 토큰에서 회원 ID를 추출합니다.
     public Long extractMemberId(String token) {
-        // TODO [5단계] 알고리즘을 사용해 토큰의 유효성을 검증하고, "memberId" 클레임에서 회원 ID를 추출하세요. 유효하지 않은 경우 "유효하지 않은 토큰입니다." 메시지와 함께 UnAuthorizedException을 발생시키세요.
-        return null;
+        // TODO [5단계] 알고리즘을 사용해 토큰의 유효성을 검증하고,
+        //  "memberId" 클레임에서 회원 ID를 추출하세요.
+        //  유효하지 않은 경우 "유효하지 않은 토큰입니다." 메시지와 함께 UnAuthorizedException을 발생시키세요.
+        try {
+            DecodedJWT tokenVerified = JWT.require(algorithm).build().verify(token);
+            Claim memberIdClaim = tokenVerified.getClaim("memberId");
+            Long memberId = memberIdClaim.asLong();
+            return memberId;
+
+        } catch (JWTVerificationException e) {
+            throw new UnAuthorizedException("유효하지 않은 토큰입니다.");
+        }
     }
+
+
 }
