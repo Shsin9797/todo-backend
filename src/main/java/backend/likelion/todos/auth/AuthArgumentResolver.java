@@ -20,7 +20,7 @@ public class AuthArgumentResolver implements HandlerMethodArgumentResolver {
     @Override
     public boolean supportsParameter(MethodParameter parameter) {
         // TODO [6단계] parameter가 @Auth 어노테이션을 갖고 있고, 파라미터 타입이 Long.class인 경우 true를 반환하는 조건을 구현하세요.
-        return parameter.hasParameterAnnotation(Auth.class) && parameter.getParameterType().equals(Long.class);;
+        return parameter.hasParameterAnnotation(Auth.class) && parameter.getParameterType().equals(Long.class);
     }
 
     @Override
@@ -30,8 +30,11 @@ public class AuthArgumentResolver implements HandlerMethodArgumentResolver {
             NativeWebRequest webRequest,
             WebDataBinderFactory binderFactory
     ) {
-        // TODO [6단계] webRequest로부터 accessToken을 추출하고, jwtService를 사용하여 memberId를 추출하여 반환하는 로직을 구현하세요.
-        return null;
+        // TODO [6단계] webRequest로부터 accessToken을 추출하고,
+        //  jwtService를 사용하여 memberId를 추출하여 반환하는 로직을 구현하세요.
+        String accessToken = extractAccessToken(webRequest);
+        Long memberId = jwtService.extractMemberId(accessToken);
+        return memberId;
     }
 
     private static String extractAccessToken(NativeWebRequest request) {
