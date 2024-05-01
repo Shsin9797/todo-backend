@@ -45,10 +45,13 @@ public class GoalController {
             @RequestBody GoalUpdateRequest request
     ) {
         // TODO [8단계] GoalUpdateRequest에서 이름과 색상을 추출하고,
-        //  id와 memberId를 함께 goalService의 update 메소드에 전달하여
-        //  Goal 정보를 업데이트한 후,
-        //  ResponseEntity.ok()를 반환하세요.
-        return null;
+        String name= request.name();
+        String color =request.color();
+        // TODO id와 memberId를 함께 goalService의 update 메소드에 전달하여 Goal 정보를 업데이트한 후,
+        goalService.update(id,name,color,memberId);
+        // TODO ResponseEntity.ok()를 반환하세요.
+        ResponseEntity.BodyBuilder ok = ResponseEntity.ok();
+        return ok.build();
     }
 
     @DeleteMapping("/{id}")
