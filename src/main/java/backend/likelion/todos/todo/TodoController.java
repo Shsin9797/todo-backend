@@ -54,6 +54,7 @@ public class TodoController {
     ) {
         // TODO [9단계] todoId와 memberId를 todoService의 uncheck 메소드에 전달하여
         //  Todo를 미완료 상태로 변경하세요.
+        todoService.uncheck(todoId,memberId);
     }
 
     @PutMapping("/{id}")
