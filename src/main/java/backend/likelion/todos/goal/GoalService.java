@@ -54,15 +54,20 @@ public class GoalService {
     public void delete(Long goalId, Long memberId) {
         // TODO [8단계] memberId로 회원을 조회하고,
         //  조회에 실패하면 "회원 정보가 없습니다." 예외를 발생시키세요.
-
-
+        Optional<Member> member = memberRepository.findById(memberId);
+        if (member.isEmpty()) {
+            throw new NotFoundException("회원 정보가 없습니다.");
+        }
         // TODO [8단계] goalId로 목표(Goal)를 조회하고,
         //  조회에 실패하면 "목표 정보가 없습니다." 예외를 발생시키세요.
-
-
+        Optional<Goal> goal = goalRepository.findById(goalId);
+        if (goal.isEmpty()) {
+            throw new NotFoundException("목표 정보가 없습니다.");
+        }
         // TODO [8단계] 조회된 Goal의 회원 정보가 입력된 memberId와 일치하는지 검증하세요.
-
+        goal.get().validateMember(member.get());
         // TODO [8단계] 검증이 완료되면 Goal을 goalRepository에서 삭제하세요.
+        goalRepository.delete(goal.get());
     }
 
     public List<GoalResponse> findAllByMemberId(Long memberId) {
