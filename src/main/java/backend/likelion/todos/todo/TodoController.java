@@ -66,6 +66,7 @@ public class TodoController {
         // TODO [9단계] TodoUpdateRequest에서 content, date를 추출하고,
         //  todoId와 memberId를 함께 todoService의 update 메소드에 전달하여
         //  Todo 정보를 업데이트하세요.
+        todoService.update(todoId,memberId,request.content(),request.date());
     }
 
     @DeleteMapping("/{id}")
