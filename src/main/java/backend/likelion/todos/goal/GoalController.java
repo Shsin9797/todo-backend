@@ -5,6 +5,7 @@ import java.net.URI;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,10 +28,14 @@ public class GoalController {
             @RequestBody GoalCreateRequest request
     ) {
         // TODO [8단계] GoalCreateRequest에서 이름과 색상을 추출하여 goalService의 save 메소드를 호출하고,
-        //  생성된 Goal의 ID로 URI를 생성하여 ResponseEntity를 반환하세요.
+        String name = request.name();
+        String color = request.color();
+        long saveInfo = goalService.save(name,color,memberId);
+        //  TODO 생성된 Goal의 ID로 URI를 생성하여 ResponseEntity를 반환하세요.
+        URI uri = URI.create(String.valueOf(saveInfo));
+        ResponseEntity.BodyBuilder responseEntity = ResponseEntity.created(uri);
 
-
-        return null;
+        return responseEntity.build();
     }
 
     @PutMapping("/{id}")
