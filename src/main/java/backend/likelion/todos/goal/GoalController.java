@@ -70,9 +70,10 @@ public class GoalController {
     public ResponseEntity<List<GoalResponse>> findMine(
             @Auth Long memberId
     ) {
-        // TODO [8단계] memberId를 goalService의 findAllByMemberId 메소드에 전달하여
-        //  해당 회원의 모든 Goal 정보를 조회하고,
-        //  조회된 정보를 ResponseEntity.ok()에 담아 반환하세요.
-        return null;
+        // TODO [8단계] memberId를 goalService의 findAllByMemberId 메소드에 전달하여 해당 회원의 모든 Goal 정보를 조회하고,
+        List<GoalResponse> info = goalService.findAllByMemberId(memberId);
+        //  TODO 조회된 정보를 ResponseEntity.ok()에 담아 반환하세요.
+        ResponseEntity<List<GoalResponse>> ok = ResponseEntity.ok(info);
+        return ok;
     }
 }
