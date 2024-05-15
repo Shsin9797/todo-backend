@@ -6,9 +6,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+// TODO [10단계] JpaRepository를 상속받습니다.
 @Repository
-public interface TodoRepository {
-    // TODO [10단계] JpaRepository를 상속받습니다.
+public interface TodoRepository extends JpaRepository<Todo, Long>{
+
 
     /**
      * TODO [10단계] 아래는 기존 findAllByMemberIdAndDate 코드와 동일한 역할을 합니다.
@@ -25,5 +26,14 @@ public interface TodoRepository {
      *      AND Todo의 date의 MONTH 부분이 주어진 인자의 month와 동일 (hint: MONTH(date) 시 date의 년도 부분이 나온다.)
      * - 정렬 Todo의 date의 DAY 부분을 오름차순으로. (hint: DAY(date) 시 date의 년도 부분이 나온다.)
      */
+
+    @Query("""
+    SELECT Todo FROM Todo
+    JOIN Todo.goal ON Todo.goal = Todo
+    WHERE Todo.goal.member.id = :memberId
+    AND YEAR(Todo.date) = :year
+    AND MONTH(Todo.date) = :month
+    ORDER BY DAY(Todo.date) ASC
+    """)
     List<Todo> findAllByMemberIdAndDateOrderByDayAsc(Long memberId, int year, int month);
 }
